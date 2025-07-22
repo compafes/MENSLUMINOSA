@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title><!--Cambiar-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        html,
+        body {
+
+            overflow-x: hidden;
+            color: black;
+        }
+
+        #menuLateral {
+            width: 200px;
+        }
+
+        #pie {
+            padding: 30px 0;
+        }
+
+        .animacion_texto {
+            text-decoration: none;
+        }
+
+        .animacion_texto:hover {
+            text-decoration: underline;
+            text-decoration-color: rgb(25, 135, 84);
+            text-decoration-thickness: 1.5px;
+        }
+
+        .caja_grande {
+            width: 100%;
+            height: 620px;
+            margin-bottom: 40px;
+            color: white;
+            text-decoration: none;
+            background-color: #121212;
+            border-radius: 30px;
+            overflow-x: hidden;
+
+        }
+
+        .informacion {
+            text-align: left;
+            font-size: 20px;
+            font-weight: lighter;
+            color: #FFFFFF;
+            margin-right: 20px;
+        }
+
+        .titulo {
+            text-align: left;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            margin-top: 5px;
+            color: #FFFFFF;
+            margin-right: 20px;
+            font-size: 30px;
+        }
+
+        .caja_grande img {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+            display: block;
+            max-height: 620px;
+            border: 3px solid #1f1f1f;
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+    <div class="w-100 bg-success" style="height: 10px;"></div>
+    <!--Barra verde en la parte superior (me parti la cabeza en eso xd)-->
+
+    <nav class="navbar navbar-expand-lg bg-body border-bottom border-success border-2">
+        <div class="container-fluid">
+
+            <!-- Logo -->
+            <div class="border-end border-success border-2">
+                <a class="navbar-brand" href="index.html">
+                    <img src="../img/Logo.png" alt="Bootstrap" width="115" height="50">
+                </a>
+            </div>
+
+            <!-- Botón hamburguesa que abre el offcanvas -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuLateral"
+                aria-controls="menuLateral">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Offcanvas: menú lateral que sale desde la izquierda -->
+            <div class="offcanvas offcanvas-start" tabindex="-1" id="menuLateral" aria-labelledby="menuLateralLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="menuLateralLabel">Menú</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
+                </div>
+                <div class="offcanvas-body justify-content-center text-center">
+                    <div class="navbar-nav">
+                        <a class="nav-link px-5 animacion_texto" href="ciencia.html">CIENCIAS</a>
+                        <a class="nav-link px-5 animacion_texto" href="medioambiente.html">MEDIO
+                            AMBIENTE</a><!--combiar a active cuando este en la pagina correspondiente-->
+                        <a class="nav-link px-5 animacion_texto" href="animales.html">ANIMALES</a>
+                        <a class="nav-link px-5 animacion_texto" href="historia.html">HISTORIA</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </nav>
+    <br>
+
+
+    <div class="container">
+        <div class="caja_grande">
+            <div class="row">
+                <div class="col-lg-6 col-sm-12">
+                    <img src="../img/img35.PNG" style="height: 620px;" alt="galileo" class="img-fluid">
+                </div>
+                <div class="col-lg-6 col-sm-12 px-4 px-sm-5">
+                    <div class="titulo me-3" style="font-size: 30px;">
+                        <a href="" class="animacion_texto titulo" style="color: #FFFFFF;">
+                            ¿Sabrías distinguir un jaguar de un leopardo? Estas son las claves para conseguirlo
+                        </a>
+                    </div>
+                    <div class="me-3 mt-3">
+                        <a href="" class="animacion_texto informacion" style="color: #FFFFFF;">
+                            La diferencia entre un guepardo y un león es clara como el agua, pero ¿un leopardo y un
+                            jaguar? No tanto. Ambos grandes felinos son musculosos depredadores de emboscada con pelaje
+                            moteado y un aspecto muy similar. 
+                            Es por eso que muchas personas tienden a confundirlos o a creer que son lo mismo. En este
+                            artículodescribe a los leopardos y los jaguares y analiza las finas líneas que separan a
+                            estos felinos.
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <!--aca empiza el footer-->
+    <footer style="background-color: #121212;">
+        <div class="container-fluid" id="pie">
+            <div class="row pt-3">
+                <div class="col-lg-3 col-md-6 col-sm-12 text-center">
+                    <h5 class="mb-3 text-white">links</h5>
+                    <ul class="list-inline mb-4">
+                        <li class="mb-1 list-inline-item">
+                            <a href="https://www.youtube.com/@MensLuminosa" style="color: #FFFFFF;" target="_blank"><i
+                                    class="bi bi-youtube fs-2"></i></a>
+                        </li>
+                        <li class="mb-1 list-inline-item">
+                            <a href="https://www.tiktok.com/@mens_luminosa?is_from_webapp=1&sender_device=pc"
+                                style="color: #FFFFFF;" target="_blank"><i class="bi bi-tiktok fs-2"></i></a>
+                        </li>
+                        <li class="mb-1 list-inline-item">
+                            <a href="https://x.com/Mens_Luminosa" style="color: #FFFFFF;" target="_blank"><i
+                                    class="bi bi-twitter-x fs-2"></i></a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="https://www.instagram.com/si_witsi_witsi_/?utm_source=ig_web_button_share_sheet"
+                                style="color: #FFFFFF;" target="_blank"><i class="bi bi-instagram fs-2"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4 text-center text-white">
+                    <h5 class="mb-3 text-white ">Suscripciones</h5>
+                    <ul class="list-inline">
+                        <li>
+                            <a href="suscripciones.html" class="list-inline-item animacion_texto" style="color: #FFFFFF;">•Ultra
+                                premium</a>
+                        </li>
+                        <li>
+                            <a href="suscripciones.html" class="list-inline-item animacion_texto" style="color: #FFFFFF;">•Premium</a>
+                        </li>
+                        <li>
+                            <a href="suscripciones.html" class="list-inline-item animacion_texto" style="color: #FFFFFF;">•Basica</a>
+                        </li>
+                    </ul>
+
+                </div>
+                <div class="col-lg-7 col-md-12 col-sm-12 pt-4">
+                    <p class="text-white text-center">
+                        Copyright © 2025-2077 Mens Luminosa Society. Copyright © 1999-2079 Mens Luminosa Partners LLC.
+                        Todos los
+                        derechos reservados</p>
+                </div>
+            </div>
+            <div class="w-100 bg-success" style="height: 10px;"></div>
+        </div>
+    </footer>
+
+    <!--fin del container -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

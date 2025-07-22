@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title><!--Cambiar-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+
+   <style>
+
+html, body {
+  overflow-x: hidden;
+  color: black;
+}
+/* ✴️ Desactiva el scroll horizontal (oculta desbordes laterales).
+   También fuerza el texto por defecto a color negro, sobrescribiendo lo que traiga Bootstrap.
+*/
+
+#menuLateral {
+  width: 200px;
+}
+/* 🎛️ Especifica un ancho fijo para el menú lateral (offcanvas), 
+   ya que Bootstrap lo adapta automáticamente según pantalla.
+   Con esto se fuerza siempre a 200px.
+*/
+
+#pie {
+  padding: 30px 0;
+}
+/* 📦 Agrega espacio arriba y abajo al footer (30px), 
+   separándolo del resto del contenido. Esta clase está enlazada por ID al pie de página.
+*/
+
+.no-subrayado {
+  text-decoration: none;
+}
+
+.no-subrayado:hover {
+  text-decoration: underline;
+  text-decoration-color: rgb(25, 135, 84);
+  text-decoration-thickness: 1.5px;
+}
+/* ✒️ Estilo de enlaces personalizados: 
+   sin subrayado por defecto, pero al pasar el cursor se subraya con una línea verde Bootstrap (`success`) más gruesa de lo normal.
+   Esto no lo trae Bootstrap por defecto, lo agregaste vos.
+*/
+
+
+.caja {
+  width: 345px;
+  height: 395px;
+  border-radius: 30px;
+  transition: transform 0.5s ease;
+}
+/* 🧱 Caja contenedora de noticias (tarjetas personalizadas).
+   - Ancho y alto fijos.
+   - Bordes redondeados.
+   - Transición suave si hay cambio de transformación (como hover).
+   ❗ Esto reemplaza totalmente a las tarjetas de Bootstrap (es tuyo).
+*/
+
+.caja img {
+  height: 220px;
+  width: 100%;
+  display: block;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+}
+/* 🖼 Imagen superior dentro de la tarjeta:
+   - Ocupa el 100% del ancho
+   - Altura fija para uniformidad visual
+   - Bordes redondeados solo arriba (coherente con la caja)
+   - `display: block` elimina espacio blanco debajo de imágenes inline
+*/
+
+.caja:hover {
+  transform: translateY(-10px);
+}
+/* 🧲 Efecto de desplazamiento sutil hacia arriba al pasar el cursor (hover). 
+   Mejora la sensación de interactividad */
+
+.titulo {
+  text-align: left;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  margin-top: 5px;
+  color: #FFFFFF;
+  text-decoration: none;
+}
+/* 📝 Título de cada tarjeta:
+   - Alineado a la izquierda
+   - Fuente personalizada (Inter)
+   - Blanco (para contrastar con fondo oscuro)
+   - Sin subrayado por defecto
+*/
+
+.titulo:hover {
+  text-decoration: underline;
+  text-decoration-color: rgb(25, 135, 84);
+  text-decoration-thickness: 1.5px;
+}
+/* 🧵 Al pasar el cursor sobre el título, lo subraya con una línea verde gruesa.
+   Personalización tuya que no trae Bootstrap.
+*/
+
+
+.informacion {
+  text-align: left;
+  font-size: 13px;
+  margin-left: 10%;
+  margin-top: -10px;
+  font-weight: lighter;
+  color: #FFFFFF;
+}
+/* 📄 Texto de descripción bajo el título:
+   - Tamaño más pequeño
+   - Ligeramente desplazado a la derecha (10%)
+   - `margin-top: -10px` lo sube para acercarlo más al título. 
+     ❗ Esta es una modificación manual tuya no habitual en Bootstrap.
+*/
+
+.informacion:hover {
+  text-decoration: underline;
+  text-decoration-color: rgb(25, 135, 84);
+  text-decoration-thickness: 1.5px;
+}
+/* 🔍 Efecto hover igual al título. Subrayado con línea verde personalizada.
+   Esto mantiene coherencia visual entre elementos interactivos.
+*/
+
+.informacion_grande {
+  font-weight: normal;
+  color: #FFFFFF;
+}
+/* 🧾 Versión más grande del texto informativo. Usado en el carrusel.
+   Más legible, sin márgenes especiales, color blanco por contraste.
+*/
+
+
+.caja_grande {
+  width: 100%;
+  height: 550px;
+  background-color: #121212;
+  border-radius: 30px;
+  overflow-x: hidden;
+}
+/* 🎥 Tarjeta grande usada en el carrusel:
+   - Toma todo el ancho
+   - Alto fijo de 550px
+   - Fondo oscuro uniforme
+   - Borde redondeado
+   - Oculta cualquier contenido desbordado en eje horizontal (protege el diseño)
+*/
+
+
+.caja_grande img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  max-height: 550px;
+}
+/* 🖼 Imagen dentro de `.caja_grande`:
+   - `object-fit: cover`: ajusta la imagen a la caja sin deformarla (recorta lo que sobre)
+   - Se adapta 100% al ancho y alto
+   - `max-height` evita que sobrepase la caja
+   ❗ Este control estricto de proporciones no lo hace Bootstrap por defecto, lo añadiste vos.
+*/
+
+</style>
+
+</head>
+<body>
+<div class="w-100 bg-success" style="height: 10px;"></div><!--Barra verde en la parte superior (me parti la cabeza en eso xd)-->  
+
+<nav class="navbar navbar-expand-lg bg-body border-bottom border-success border-2">
+  <div class="container-fluid">
+
+    <!-- Logo -->
+    <div class="border-end border-success border-2">
+      <a class="navbar-brand" href="index.html">
+        <img src="img/Logo.png" alt="Bootstrap" width="115" height="50">
+      </a>
+    </div>
+
+    <!-- Botón hamburguesa que abre el offcanvas -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuLateral" aria-controls="menuLateral">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Offcanvas: menú lateral que sale desde la izquierda -->
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="menuLateral" aria-labelledby="menuLateralLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="menuLateralLabel">Menú</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
+      </div>
+      <div class="offcanvas-body justify-content-center text-center">
+        <div class="navbar-nav">
+          <a class="nav-link px-5 no-subrayado" href="html/ciencia.html">CIENCIAS</a>
+          <a class="nav-link px-5 no-subrayado"  href="html/medioambiente.html">MEDIO AMBIENTE</a><!--combiar a active cuando este en la pagina correspondiente-->
+          <a class="nav-link px-5 no-subrayado" href="html/animales.html">ANIMALES</a>
+          <a class="nav-link px-5 no-subrayado" href="html/historia.html">HISTORIA</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</nav>
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container">
+    <h3 class="text-center">Los mas relevantes</h3>
+    <div class="bg-success mx-auto" style="height: 8px; width:89%;"></div>
+</div>
+
+<!--tarjetas-->
+  <!--tarjetas-->
+<div class="d-flex flex-wrap justify-content-center text-white gap-5 my-4">
+  <!-- d-flex: activa flexbox para organizar las tarjetas en fila -->
+  <!-- flex-wrap: permite que las tarjetas salten a otra línea si no entran -->
+  <!-- justify-content-center: centra las tarjetas horizontalmente -->
+  <!-- text-white: texto blanco para todos los elementos internos -->
+  <!-- gap-5: espacio horizontal y vertical entre las tarjetas -->
+  <!-- my-4: margen vertical (arriba y abajo) -->
+
+  <div class="caja mb-4" style="background-color: #121212;">
+    <!-- Tarjeta individual -->
+    <!-- .caja: clase personalizada definida en el style -->
+    <!-- mb-4: margen inferior -->
+    <!-- fondo oscuro: #121212 para contraste -->
+
+    <img src="img/asteroide2.jpg" alt="asteroide">
+    <!-- Imagen en la parte superior de la tarjeta -->
+    <!-- Las dimensiones están controladas en CSS (.caja img) -->
+
+    <div style="height: 3px; background-color: #1f1f1f;"></div>
+    <!-- Línea divisoria gris oscuro bajo la imagen -->
+
+    <div class="titulo mx-auto" style="width:90%; font-size: 18px;">
+      <!-- Contenedor del título -->
+      <!-- .titulo: clase personalizada para fuente, color y hover -->
+      <!-- mx-auto: centra horizontalmente -->
+      <!-- width:90%: crea padding horizontal interno -->
+      <!-- font-size personalizado directamente en línea -->
+
+      <a href="html/asteroide.html" class="titulo">
+        <!-- Enlace con la misma clase de estilo .titulo -->
+        <p>El asteroide 2024 YR4 podría chocar contra la Tierra, pero los científicos tienen un plan</p>
+      </a>
+    </div>
+
+    <div class="informacion mx-auto" style="width:90%">
+      <!-- Contenedor para el texto descriptivo de la tarjeta -->
+      <!-- .informacion: fuente más pequeña, margen, color blanco -->
+      <!-- mx-auto + width:90%: mantiene buen espaciado -->
+
+      <a href="html/asteroide.html" class="no-subrayado">
+        <!-- Enlace sin subrayado pero con hover personalizado -->
+        <p style="color:#FFFFFF">
+          Las agencias espaciales disponen de sistemas para detectar, seguir y predecir las futuras órbitas de asteroides potencialmente peligrosos...
+        </p>
+      </a>
+    </div>
+  </div>
+
+      <div class="caja mb-4" style="background-color: #121212;">
+        <img src="img/estres_termico.jpg" alt="estres_termico">
+        <div style="height: 3px; background-color: #1f1f1f;"></div>
+        <div class="titulo mx-auto" style="width:90%; font-size: 18px;">
+          <a href="html/Termico.html" class="titulo"><p>¿Qué es el estrés térmico? Conoce este concepto relacionado con las temperaturas extremas</p></a>
+        </div>
+        <div class="informacion mx-auto" style="width:90%;">
+          <a href="html/Termico.html" class="no-subrayado"><p style="color:#FFFFFF">El cuerpo humano necesita mantener una temperatura determinada para seguir funcionando de forma saludable. Por eso, tanto el frío como el calor …</p></a>  x
+        </div>
+      </div>
+      <div class="caja mb-4" style="background-color: #121212;">
+        <img src="img/Incendios_California.jpg" alt="incendios_california">
+        <div style="height: 3px; background-color: #1f1f1f;"></div>
+        <div class="titulo mx-auto  " style="width:90%; font-size: 18px;">
+          <a href="html/incendios.html" class="titulo"><p>¿Qué produjo los incendios en California 2025?</p></a>
+        </div>
+        <div class="informacion mx-auto" style="width:90%">
+          <a href="html/incendios.html" class="no-subrayado"><p style="margin-top: 43px; color: #FFFFFF;">Un fotografo de mens luminosa, con décadas de experiencia en la cobertura de incendios forestales, explica por qué los últimos fuegos son tan …</p></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="container" style="margin-top: -10px;">
+      <div class="bg-success mx-auto" style="height: 8px; width:89%;"></div>
+      <h3 class="text-center my-4">Lo ultimo</h3>
+      <div class="bg-success mx-auto" style="height: 8px; width:89%;"></div>
+    </div>
+
+
+<br><br><br>
+<div class="container">
+  <!-- Contenedor principal centrado con padding automático a los lados -->
+
+  <div id="carouselExampleIndicators" class="carousel slide">
+    <!-- Carrusel Bootstrap: identificador para controles e indicadores -->
+    <!-- "slide" activa el movimiento animado entre slides -->
+
+    <div class="carousel-indicators">
+      <!-- Indicadores (puntos) que muestran en qué slide estás -->
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+
+    <div class="carousel-inner">
+      <!-- Contenedor que guarda todas las diapositivas -->
+
+      <!-- Slide 1 -->
+      <div class="carousel-item active">
+        <!-- Cada slide lleva la clase "carousel-item" -->
+        <!-- "active" marca cuál se muestra por defecto al cargar -->
+
+        <div class="caja_grande">
+          <!-- Contenedor personalizado con fondo oscuro y bordes redondeados -->
+
+          <div class="row">
+            <!-- Distribución en filas Bootstrap -->
+
+            <div class="col-lg-6 col-sm-12">
+              <!-- Imagen ocupa 6 columnas en pantallas grandes y toda la fila en pantallas pequeñas -->
+              <img src="img/galileo.jpg" alt="galileo" class="img-fluid">
+              <!-- "img-fluid" hace que la imagen sea responsive -->
+            </div>
+
+            <div class="col-lg-6 col-sm-12 px-4 px-sm-5">
+              <!-- Texto ocupa mitad de pantalla en grande y full en móvil -->
+              <!-- Padding horizontal de 4 (desktop) o 5 (mobile) -->
+
+              <div class="titulo me-3" style="font-size: 30px;">
+                <!-- Título grande con margen a la derecha -->
+                <a href="html/plantilla_informacion.html" class="no-subrayado titulo" style="color: #FFFFFF;">
+                  Los 5 datos asombrosos sobre Galileo Galilei, un genio de la ciencia en la época medieval
+                </a>
+              </div>
+
+              <div class="me-3 mt-3">
+                <!-- Texto principal con margen -->
+                <a href="html/plantilla_informacion.html" class="no-subrayado informacion_grande" style="color: #FFFFFF;">
+                  Galileo Galilei, nacido en Pisa, Italia, el 15 de febrero de 1564, es considerado el "padre del método científico"...
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="carousel-item">
+        <div class="caja_grande">
+          <div class="row h-100">
+            <!-- "h-100" asegura que ambas columnas tengan la misma altura -->
+
+            <div class="col-lg-6 col-sm-12">
+              <img src="img/cancer_menos.jpg" alt="cancer" class="img-fluid">
+            </div>
+
+            <div class="col-lg-6 col-sm-12 px-4 px-sm-5">
+              <div class="titulo me-3" style="font-size: 30px;">
+                <a href="html/cancer.html" class="no-subrayado titulo">
+                  ¿Es cierto que el cáncer era menos probable en el mundo preindustrial?
+                </a>
+              </div>
+              <div class="me-3 mt-5">
+                <a href="html/cancer.html" class="no-subrayado informacion_grande">
+                  Una nueva investigación sugiere que la incidencia de cáncer en la Gran Bretaña preindustrial fue al menos diez veces mayor...
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="carousel-item">
+        <div class="caja_grande">
+          <div class="row h-100">
+
+            <div class="col-lg-6 col-sm-12">
+              <img src="img/caiman negro.jpg" alt="caimán negro" class="img-fluid">
+            </div>
+
+            <div class="col-lg-6 col-sm-12 px-4 px-sm-5 py-sm-5">
+              <!-- Padding horizontal y vertical ajustado para móviles -->
+              <div class="titulo me-3" style="font-size: 30px;">
+                <a href="html/Caiman.html" class="no-subrayado titulo mb-4">
+                  Los 5 datos sobre el caimán negro, el caimán que vive en los ríos de la Amazonía
+                </a>
+              </div>
+              <div class="me-3 mt-5">
+                <a href="html/Caiman.html" class="no-subrayado informacion_grande">
+                  El caimán negro (Melanosuchus niger), el caimán más grande de Sudamérica, es un depredador con un camuflaje excepcional...
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Controles izquierdo y derecho del carrusel -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev" style="padding-right: 130px;">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Anterior</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next" style="padding-left: 130px;">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Siguiente</span>
+    </button>
+
+  </div>
+</div>
+
+
+
+
+
+<br><br>
+<div class="container" style="margin-top: -10px;">
+      <div class="bg-success mx-auto" style="height: 8px; width:89%;"></div></div><br><br>
+
+
+
+
+<!--aca empiza el footer-->
+  <footer style="background-color: #121212;">
+    <div class="container-fluid" id="pie">
+      <div class="row pt-3">
+        <div class="col-lg-3 col-md-6 col-sm-12 text-center" >
+          <h5 class="mb-3 text-white">links</h5>
+          <ul class="list-inline mb-4" >
+            <li class="mb-1 list-inline-item">
+              <a href="https://www.youtube.com/@MensLuminosa" style="color: #FFFFFF;" target="_blank"><i class="bi bi-youtube fs-2"></i></a>
+            </li>
+            <li class="mb-1 list-inline-item">
+              <a href="https://www.tiktok.com/@mens_luminosa?is_from_webapp=1&sender_device=pc" style="color: #FFFFFF;" target="_blank"><i class="bi bi-tiktok fs-2"></i></a>
+            </li>
+            <li class="mb-1 list-inline-item">
+              <a href="https://x.com/Mens_Luminosa" style="color: #FFFFFF;" target="_blank"><i class="bi bi-twitter-x fs-2"></i></a>
+            </li>
+            <li class="list-inline-item">
+              <a href="https://www.instagram.com/si_witsi_witsi_/?utm_source=ig_web_button_share_sheet" style="color: #FFFFFF;" target="_blank"><i class="bi bi-instagram fs-2"></i></a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-lg-2 col-md-6 mb-4 text-center text-white">
+          <h5 class="mb-3 text-white ">Suscripciones</h5>
+          <ul class="list-inline">
+            <li>
+              <a href="suscripciones.html" class="list-inline-item no-subrayado" style="color: #FFFFFF;">•Ultra premium</a>
+            </li>
+            <li>
+              <a href="suscripciones.html" class="list-inline-item no-subrayado" style="color: #FFFFFF;">•Premium</a>
+            </li>
+            <li>
+              <a href="suscripciones.html" class="list-inline-item no-subrayado" style="color: #FFFFFF;">•Basica</a>
+            </li>
+          </ul>
+
+        </div>
+        <div class="col-lg-7 col-md-12 col-sm-12 pt-4">
+          <p class="text-white text-center">
+            Copyright © 2025-2077 Mens Luminosa Society. Copyright © 1999-2079 Mens Luminosa Partners LLC. Todos los derechos reservados</p>
+        </div>
+        </div>
+        <div class="w-100 bg-success" style="height: 10px;"></div>
+      </div>
+    </footer>
+<!--fin del container -->
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

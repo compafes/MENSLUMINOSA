@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="es"> <!-- Define el tipo de documento y el idioma principal de la página -->
+
+<head>
+  <meta charset="UTF-8"> <!-- Establece la codificación de caracteres en UTF-8 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Hace que el sitio sea responsive, adapta el diseño al ancho del dispositivo -->
+  <title>Document</title> <!-- Título de la pestaña del navegador -->
+
+  <!-- Carga el CSS de Bootstrap desde CDN, versión 5.3.7 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+
+  <!-- Carga los íconos de Bootstrap (como los usados en el footer) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+  <!-- Fuente personalizada desde Google Fonts: Inter (usada en títulos e información) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    html,
+    body {
+      overflow-x: hidden;
+      /* Evita desplazamiento horizontal */
+      color: black;
+      /* Color de texto por defecto */
+    }
+
+    #menuLateral {
+      width: 200px;
+      /* Define el ancho del menú offcanvas */
+    }
+
+    #pie {
+      padding: 30px 0;
+      /* Espaciado vertical del pie de página */
+    }
+
+    /* Estilos para las cajas de contenido principales */
+    .caja_larga {
+      min-height: auto;
+      /* Altura automática según contenido */
+      background-color: #121212;
+      /* Fondo oscuro */
+      margin-bottom: 30px;
+      margin-left: auto;
+      margin-right: auto;
+      border-radius: 20px;
+      width: 90%;
+      transition: transform 0.5s ease, box-shadow 0.5s ease;
+      /* Animación suave al hacer hover */
+      overflow-x: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      /* Sombra externa */
+    }
+
+    .caja img {
+      min-height: 220px;
+      width: 100%;
+      border-top-left-radius: 30px;
+      border-top-right-radius: 30px;
+      object-fit: cover;
+      /* Escala la imagen sin deformarla */
+      display: block;
+    }
+
+    .caja {
+      width: 330px;
+      height: 410px;
+      border-radius: 30px;
+      transition: transform 0.5s ease;
+      overflow: hidden;
+      margin-top: 50px;
+    }
+
+    .caja:hover {
+      transform: translateY(-10px);
+      /* Animación al pasar el cursor */
+    }
+
+    .caja_larga:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.9);
+      /* Sombra más intensa al hacer hover */
+    }
+
+    .titulo {
+      text-align: left;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      margin-top: 5px;
+      color: #FFFFFF;
+      margin-right: 20px;
+      font-size: 20px;
+    }
+
+    .informacion {
+      text-align: left;
+      font-size: 16px;
+      font-weight: lighter;
+      color: #FFFFFF;
+      margin-right: 20px;
+    }
+
+    .animacion_texto {
+      text-decoration: none;
+    }
+
+    .animacion_texto:hover {
+      text-decoration: underline;
+      text-decoration-color: rgb(25, 135, 84);
+      /* Verde de Bootstrap */
+      text-decoration-thickness: 1.5px;
+    }
+
+    .caja_larga img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      max-height: 200px;
+      object-fit: cover;
+    }
+
+    @media (max-width: 767.98px) {
+      .caja_larga {
+        width: 95%;
+        /* Ajusta el ancho en pantallas pequeñas (responsive) */
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="w-100 bg-success" style="height: 10px;"></div>
+  <!-- Barra verde horizontal en la parte superior de la página, ocupa el 100% del ancho -->
+
+  <nav class="navbar navbar-expand-lg bg-body border-bottom border-success border-2">
+    <!-- Barra de navegación principal. 
+       `navbar-expand-lg`: el menú colapsa en pantallas menores a `lg`.
+       `bg-body`: color de fondo del body (por defecto blanco).
+       `border-bottom border-success border-2`: línea verde debajo del navbar. -->
+
+    <div class="container-fluid">
+      <!-- Contenedor fluido: ocupa todo el ancho de la pantalla -->
+
+      <!-- Logo -->
+      <div class="border-end border-success border-2">
+        <a class="navbar-brand" href="index.html">
+          <img src="../img/Logo.png" alt="Bootstrap" width="115" height="50">
+          <!-- Imagen del logo. Bootstrap se usa para espaciarlo y alinearlo. -->
+        </a>
+      </div>
+
+      <!-- Botón hamburguesa para activar el menú offcanvas en móviles -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuLateral"
+        aria-controls="menuLateral">
+        <span class="navbar-toggler-icon"></span>
+        <!-- Icono de hamburguesa (Bootstrap genera el ícono por defecto) -->
+      </button>
+
+      <!-- Offcanvas: menú lateral (sale desde la izquierda) -->
+      <div class="offcanvas offcanvas-start" tabindex="-1" id="menuLateral" aria-labelledby="menuLateralLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="menuLateralLabel">Menú</h5>
+          <!-- Título del menú lateral -->
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
+          <!-- Botón para cerrar el menú -->
+        </div>
+
+        <div class="offcanvas-body justify-content-center text-center">
+          <!-- Contenido del menú -->
+          <div class="navbar-nav">
+            <!-- Enlaces de navegación con clases de Bootstrap para estilos y espaciado -->
+            <a class="nav-link active px-5 animacion_texto" href="ciencia.html"
+              :style="text-decoration: underline;">CIENCIAS</a>
+            <!-- `active`: indica que está en la página actual -->
+            <a class="nav-link px-5 animacion_texto" href="medioambiente.html">MEDIO AMBIENTE</a>
+            <a class="nav-link px-5 animacion_texto" href="animales.html">ANIMALES</a>
+            <a class="nav-link px-5 animacion_texto" href="historia.html">HISTORIA</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </nav>
+  <br>
+
+  <!-- Primera Tarjeta -->
+
+
+  <div class="container-fluid mt-5">
+    <div class="row" style="height: auto;">
+      <div class="col-lg-8 col-md-8 col-sm-12">
+        <div class="caja_larga container-fluid">
+          <div class="row h-100">
+            <div class="col-12 col-lg-3 p-0">
+              <img src="../img/img24.jfif" alt="asteroide">
+            </div>
+            <div class="col-12 col-lg-9">
+              <div class="my-2 me-3">
+                <a href="asteroide.html" class="titulo animacion_texto">
+                  Este asteroide podría chocar contra la Tierra, pero los científicos tienen un plan
+                </a>
+              </div>
+              <div>
+                <a href="asteroide.html" class="animacion_texto informacion">
+                  Las agencias espaciales disponen de sistemas para detectar, seguir y predecir las futuras órbitas de
+                  asteroides potencialmente peligrosos.
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Segunda tarjeta -->
+
+        <div class="caja_larga container-fluid">
+          <div class="row h-100">
+            <div class="col-12 col-lg-3 p-0">
+              <img src="../img/img2.jpg" alt="asteroide">
+            </div>
+            <div class="col-12 col-lg-9">
+              <div class="my-2 me-3">
+                <a href="alineacion.html" class="titulo animacion_texto">
+                  Cómo ver la rara alineación de planetas que iluminará el cielo nocturno en febrero de 2025
+                </a>
+              </div>
+              <div>
+                <a href="alineacion.html" class="animacion_texto informacion">
+                  Aunque los planetas siempre están "alineados", ver más de cuatro en el cielo es poco frecuente.
+                  La alineación de febrero ofrece la oportunidad de contemplar los siete en una vista panorámica.
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tercera tarjeta -->
+
+        <div class="caja_larga container-fluid">
+          <div class="row">
+            <div class="col-12 col-lg-3 p-0">
+              <img src="../img/img3.jpg" style="height: 159px;" alt="agujero">
+            </div>
+            <div class="col-12 col-lg-9">
+              <div class="my-2 me-3">
+                <a href="Agujeros.html" class="titulo animacion_texto">
+                  Agujeros negros: las 3 definiciones que suelen confundirse con estos gigantes del espacio
+                </a>
+              </div>
+              <div>
+                <a href="#" class="animacion_texto informacion">
+                  La gravedad de estos objetos astronómicos es tan alta que atrae estrellas, planetas e incluso la luz.
+                  Aunque se ha investigado mucho sobre ellos, todavía queda mucho por conocer y
+                  a menudo se los confunde con otros conceptos.
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div> <!-- Fin de columna principal -->
+
+      <div class="col-lg-4 mx-auto">
+        <!-- Columna secundaria. En pantallas grandes ocupa 4/12, centrada horizontalmente con `mx-auto` -->
+
+        <div class="caja mx-auto mb-5 my-auto" style="background-color: #121212;">
+          <!-- Caja de contenido más pequeña, con fondo oscuro -->
+          <img src="../img/img8.jfif" alt="col" class="mx-auto">
+          <!-- Imagen centrada -->
+
+          <div :style="height: 3px; background-color: #1f1f1f;"></div>
+          <!-- Línea divisora decorativa -->
+
+          <div class="mx-auto" style="width:90%">
+            <a href="coles.html" class="titulo animacion_texto">
+              Los 4 beneficios de la col para la salud humana, según la ciencia
+            </a>
+          </div>
+
+          <div class="mx-auto" style="width:90%">
+            <a href="coles.html" class="informacion animacion_texto">
+              Rica en nutrientes, la col es importante en la alimentación y puede consumirse a diario.
+              Descubre por qué es buena, según los expertos consultados por Mens Luminosa.
+            </a>
+          </div>
+        </div>
+      </div>
+    </div> <!-- Fin de row -->
+  </div> <!-- Fin de container-fluid -->
+
+
+
+
+
+
+
+
+  <!--aca empiza el footer-->
+  <footer style="background-color: #121212;">
+    <!-- Componente <footer> con fondo oscuro -->
+
+    <div class="container-fluid" id="pie">
+      <!-- Contenedor fluido (ocupa el 100% del ancho), con padding definido en CSS (#pie) -->
+
+      <div class="row pt-3">
+        <!-- Fila que contiene tres columnas, con padding arriba -->
+
+        <!-- 🔗 Columna 1: enlaces a redes sociales -->
+        <div class="col-lg-3 col-md-6 col-sm-12 text-center">
+          <h5 class="mb-3 text-white">links</h5>
+          <!-- Título blanco y con margen inferior -->
+
+          <ul class="list-inline mb-4">
+            <!-- Lista horizontal (en línea) sin viñetas -->
+            <li class="mb-1 list-inline-item">
+              <a href="https://www.youtube.com/@MensLuminosa" style="color: #FFFFFF;" target="_blank">
+                <i class="bi bi-youtube fs-2"></i>
+              </a>
+            </li>
+            <li class="mb-1 list-inline-item">
+              <a href="https://www.tiktok.com/@mens_luminosa?is_from_webapp=1&sender_device=pc" style="color: #FFFFFF;"
+                target="_blank">
+                <i class="bi bi-tiktok fs-2"></i>
+              </a>
+            </li>
+            <li class="mb-1 list-inline-item">
+              <a href="https://x.com/Mens_Luminosa" style="color: #FFFFFF;" target="_blank">
+                <i class="bi bi-twitter-x fs-2"></i>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="https://www.instagram.com/si_witsi_witsi_/?utm_source=ig_web_button_share_sheet"
+                style="color: #FFFFFF;" target="_blank">
+                <i class="bi bi-instagram fs-2"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-lg-2 col-md-6 mb-4 text-center text-white">
+          <h5 class="mb-3 text-white ">Suscripciones</h5>
+          <ul class="list-inline">
+            <li>
+              <a href="suscripciones.html" class="list-inline-item animacion_texto" style="color: #FFFFFF;">•Ultra premium</a>
+            </li>
+            <li>
+              <a href="suscripciones.html" class="list-inline-item animacion_texto" style="color: #FFFFFF;">•Premium</a>
+            </li>
+            <li>
+              <a href="suscripciones.html" class="list-inline-item animacion_texto" style="color: #FFFFFF;">•Basica</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-lg-7 col-md-12 col-sm-12 pt-4">
+          <p class="text-white text-center">
+            Copyright © 2025-2077 Mens Luminosa Society. Copyright © 1999-2079 Mens Luminosa Partners LLC. Todos los
+            derechos reservados</p>
+        </div>
+      </div>
+      <div class="w-100 bg-success" style="height: 10px;"></div>
+    </div>
+  </footer>
+  <!--fin del container -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Incluye los scripts de Bootstrap necesarios para que funcionen componentes interactivos (como el menú offcanvas) -->
+</body>
+
+</html>
